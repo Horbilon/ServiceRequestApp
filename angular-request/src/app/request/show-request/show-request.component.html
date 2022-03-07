@@ -1,0 +1,79 @@
+<div class="container mb-3">
+    <div class="row">
+        <div class="col-xl-6">
+            <label for="searchType" class="form-label">Filter Type</label>
+            <select name="searchType" id="searchType" class="form-select" style="max-width: 200px;">                
+                <option value="1" selected>Laptop Type</option>
+                <option value="2">Issue</option>                
+            </select>   
+            <label for="search" class="form-label">Search</label>            
+            <input type="text" id="search" class="form-control"  placeholder="Insert text..." style="max-width: 350px;">
+            <button class="btn btn-primary my-2"  (click)="search()">Search by Text</button>
+        </div>
+        <div class="col-xl-6">
+            <label class="form-label" for="startDate">Start Date From</label>
+            <input type="date" class="form-control" name="startDate" id="startDate" style="max-width: 200px;">
+            <button class="btn btn-primary my-2"  (click)="searchDate()">Search by Date</button>
+        </div>
+    </div>
+</div> 
+<table class="table table-striped" id="requestTable">
+    <thead>
+        <th>Id</th>
+        <th>Laptop Type</th>
+        <th>Issue</th>
+        <th>Notes</th>
+        <th>Serial Number</th>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Image</th>
+        <th>Options</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of requestList$|async">
+            <td>{{item.id}}</td>
+            <td>{{item.requestType}}</td>
+            <td>{{item.requestIssue}}</td>
+            <td>{{item.notes}}</td>
+            <td>{{item.requestSerialNumber}}</td>
+            <td>{{item.requestDate}}</td>
+            <td>{{item.requestName}}</td>
+            <td>{{item.requestEmail}}</td>
+            <td *ngIf="item.requestPhotoPathFile==='null'">No image given</td>
+            <td *ngIf="item.requestPhotoPathFile!='null'"><img src="{{item.requestPhotoPathFile}}" alt="Image of Service Request [{{item.id}}]" style="max-width: 200px;"></td>
+            <td>
+                <button class="btn btn-outline-primary me-2 mb-1" (click)="modalEdit(item)" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                      </svg>
+                </button>
+                <button class="btn btn-outline-danger me-2 mb-1" (click)="delete(item)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                      </svg>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+  
+<!-- Modal to add/edit Request -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{modalTitle}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalClose()" id="add-edit-modal-close"></button>
+    </div>
+    <div class="modal-body">
+        <app-add-edit-request [request]="request" *ngIf="activateAddEditInspectionComponent"></app-add-edit-request>
+    </div>
+    
+    </div>
+</div>
+</div>

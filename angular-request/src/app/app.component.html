@@ -1,0 +1,22 @@
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">  
+  <div class="container">    
+    <span class="fs-1 text-color">SERVICE REQUEST APP</span>    
+    <ul class="nav nav-pills float-end">
+      <li class="nav-item"><a href="#" class="nav-link text-color" (click)="change('create')">CREATE REQUEST</a></li>
+      <li class="nav-item"><a href="#" class="nav-link text-color" (click)="change('list')">REQUEST LIST</a></li>
+    </ul>
+  </div>  
+</header>
+<div class="container-fluid">  
+  <app-request *ngIf="page==='list'"></app-request>
+  <app-add-request *ngIf="page==='create'"></app-add-request>
+  <div class="alert alert-success" role="alert" id="add-sucess-alert">
+    Service Request created with sucess.
+  </div>
+  <div class="alert alert-success" role="alert" id="update-sucess-alert">
+    Service Request edited with sucess.
+  </div>
+  <div class="alert alert-success" role="alert" id="delete-sucess-alert">
+    Service Request deleted with sucess.
+  </div>
+</div>

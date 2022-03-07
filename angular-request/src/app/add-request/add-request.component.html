@@ -1,0 +1,49 @@
+<div class="container">
+    <form>
+        <div class="mb-3">
+            <label for="requestType" class="form-label">Laptop Type</label>
+            
+            <select name="requestType" id="requestType" class="form-select" [(ngModel)]="requestType" >
+                <option value="" disabled selected>Select your laptop</option>
+                <option value="Lenovo P50">Lenovo P50</option>
+                <option value="Lenovo P50s">Lenovo P50s</option>
+                <option value="Lenovo P51">Lenovo P51</option>
+                <option value="Lenovo P51s">Lenovo P51s</option>
+                <option value="Lenovo P52">Lenovo P52</option>
+                <option value="Lenovo P52s">Lenovo P52s</option>
+            </select>
+            <div class="mb-3">
+                <label class="form-label" for="requestIssue">Issue</label>
+                <select class="form-select" name="requestIssue" id="requestIssue" [(ngModel)]="requestIssue">
+                    <option value="" disabled selected>Select a Issue</option>
+                    <option *ngFor="let issue of issueList$|async" [value]="issue.issueName">{{issue.issueName}}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="requestNotes">Notes</label>
+                <textarea rows="1" cols="30" class="form-control" [(ngModel)]="notes" name="requestNotes" placeholder="Add a note to give more context in your problem."></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="requestSerialNumber">Laptop Serial Number</label>
+                <input type="text" class="form-control" maxlength="12" [(ngModel)]="requestSerialNumber" name="requestSerialNumber" placeholder="12345-654321" pattern="[0-9]{5}-[0-9]{6}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="requestDate">Date</label>
+                <input type="date" class="form-control"[(ngModel)]="requestDate" name="requestDate">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="requestName">Name</label>
+                <input type="text" class="form-control"[(ngModel)]="requestName" name="requestName"  maxlength="40">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="requestEmail">E-mail</label>
+                <input type="email" class="form-control" [(ngModel)]="requestEmail" name="requestEmail">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="requestPhotoPathFile">Image URL (optional)</label>
+                <input type="text" class="form-control" [(ngModel)]="requestPhotoPathFile" name="requestPhotoPathFile">
+            </div>
+            <button type="submit" (click)="AddRequest()"  class="btn btn-primary">Add</button>
+       </div>
+    </form>    
+</div>

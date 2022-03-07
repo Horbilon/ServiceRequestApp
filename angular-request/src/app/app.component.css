@@ -1,0 +1,31 @@
+#add-sucess-alert,
+#update-sucess-alert,
+#delete-sucess-alert {
+    display: none;
+}
+#add-sucess-alert,
+#update-sucess-alert,
+#delete-sucess-alert {
+    animation-name: fadeInAndOut;
+    animation-duration: 4s;    
+}
+
+@-webkit-keyframes fadeInAndOut {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+@keyframes fadeInAndOut {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+header{
+    background-color: rgb(53, 53, 53);
+}
+
+.text-color{
+    color:rgb(216, 216, 216);
+}
