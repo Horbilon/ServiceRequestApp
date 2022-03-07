@@ -40,7 +40,7 @@ Full guide on how to run and test this repository.
 		- write `dotnet ef database update`
 	- Go back to SQL Server Management Studio and refresh your newly create database should appear under the folder `Databases`, if it doesnt appear there try closing and opening the program and/or check the server name to see they match
 	- Run debug and check if it's running as intended, if Swagger has 2 APIs, Request and Issues, it should be ok
-- Open the `Query.txt` and copy/paste it to a new query in Microsoft SQL Server Management Studio, make sure you are using the database we created. 
+- Open the `insertData.sql` and copy/paste it to a new query in Microsoft SQL Server Management Studio, make sure you are using the database we created. 
 
 ### \[3\] - Visual Studio Code
 - Open the folder `angular-request` with Visual Studio Code
